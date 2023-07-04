@@ -17,3 +17,22 @@
 h5 {
   color: black;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+input {
+  width: 20rem;
+  height: 2rem;
+  justify-content: center;
+  border-radius: 7px;
+  outline: none;
+  margin-left: -0.4rem;
+}
+button {
+  width: 5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 7px;
+  margin-left: 7rem;
+}
