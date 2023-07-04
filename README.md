@@ -1,13 +1,21 @@
+## Dowell login Plugin by solomon
 
-## To follow the steps you provided, please follow the instructions below:
+## installation
 
-- Create a branch from the main branch with the name of the project you are working on, followed by your name. For example, if the project is called "MyProject" and your name is John, the branch name would be "MyProject-John".
+- Download the dowell login Plugin ZIP file from the GitHub repository or your custom source.
 
-- **Important**: Avoid pushing your code directly to the main branch. If you do so, your code will be removed, and you will need to push it again to your branch. Instead, always work on your own branch.
+- Copy the extracted folder to your WordPress installation's wp-content/plugins/ directory.
 
-- Before starting the development process, make sure to thoroughly understand the project's API documentation. You can access it by clicking here, [Dowell API Services](https://github.com/orgs/DoWellUXLab/).
+- Log in to your WordPress admin dashboard.
 
-By following these steps, you will ensure that you work on your dedicated branch, understand the API documentation, and collaborate effectively on the project.
+- Navigate to "Plugins" in the left-hand menu.
 
-If you encounter any issues, have questions, or need assistance with the API, please contact our support team.
+- Locate the "Dowell login plugin" and click the "Activate" link to activate the plugin.
 
+## Features
+
+- it will display a login form
+
+- you are expected to add your valid username and password
+
+- after that you will be signed in and a sessional iD will be created for each log in
