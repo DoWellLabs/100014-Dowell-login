@@ -18,14 +18,6 @@ function OurComponent(props) {
   return (
     <div className="boilerplate-frontend">
       <Form />
-      {/* <p>
-        <button onClick={() => setShowSkyColor(prev => !prev)}>Toggle view sky color</button>
-        {showSkyColor && <span>{props.skyColor}</span>}
-      </p>
-      <p>
-        <button onClick={() => setShowGrassColor(prev => !prev)}>Toggle view grass color</button>
-        {showGrassColor && <span>{props.grassColor}</span>}
-      </p> */}
     </div>
   );
 }
