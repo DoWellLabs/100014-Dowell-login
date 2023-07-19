@@ -1,13 +1,95 @@
+# 📖 DoWell Login <a name="about-project"></a>
 
-## To follow the steps you provided, please follow the instructions below:
+**DoWell Login** is a React web app that provides a login form to authenticate users using an API service. The app allows users to log in, set cookies, and handle external navigation upon successful login.
 
-- Create a branch from the main branch with the name of the project you are working on, followed by your name. For example, if the project is called "MyProject" and your name is John, the branch name would be "MyProject-John".
+## 🛠 Built With <a name="built-with"></a>
 
-- **Important**: Avoid pushing your code directly to the main branch. If you do so, your code will be removed, and you will need to push it again to your branch. Instead, always work on your own branch.
+- **React**
+- **PHP**
+- **SCSS**
 
-- Before starting the development process, make sure to thoroughly understand the project's API documentation. You can access it by clicking here, [Dowell API Services](https://github.com/orgs/DoWellUXLab/).
+<!-- Features -->
 
-By following these steps, you will ensure that you work on your dedicated branch, understand the API documentation, and collaborate effectively on the project.
+### Key Features <a name="key-features"></a>
 
-If you encounter any issues, have questions, or need assistance with the API, please contact our support team.
+- **LOGIN TO  DOWELL MAIN DASHBOARD**
 
+### Setup
+
+Clone this repository to your desired folder:
+
+Example commands:
+
+```sh
+  cd <desired folder to contain project>
+  git clone https://github.com/DoWellLabs/100014-Dowell-login.git
+  cd 100014-Dowell-login
+  git switch react_login_plugin-john
+```
+
+### Install
+
+Install this project with:
+
+```sh
+npm install
+```
+
+### Usage
+Create environemnt variable and add your API KEY in the following format
+
+```sh
+REACT_APP_API_KEY=YOUR_API_KEY_GOES_HERE
+```
+To run the project outside wordpress, execute the following command in root folder:
+
+```sh
+npm run dev 
+```
+To run the project inside wordpress, execute the following command in root folder then activate the plugin :
+
+
+```sh
+npm run build 
+```
+To run the project in watch mode inside wordpress, execute the following command in root folder:
+
+```sh
+npm start 
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- AUTHORS -->
+
+## 👥 Authors <a name="authors"></a>
+
+<!-- > Mention all of the collaborators of this project. -->
+
+👤 **JOHN PATRICK**
+
+- GitHub: [@johnpatrick254](https://github.com/johnpatrick254)
+- Twitter: [@jpattrick538](https://twitter.com/jpattrick538_)
+- LinkedIn: [john-patrick-254-ke](https://www.linkedin.com/in/john-patrick-254ke/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FUTURE FEATURES -->
+
+## 🔭 Future Features <a name="future-features"></a>
+
+ <!-- Describe 1 - 3 features you will add to the project. -->
+
+- **Sign up option**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- LICENSE -->
+
+## 📝 License <a name="license"></a>
+
+This project is [APACHE 2.0](./LICENSE) licensed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
