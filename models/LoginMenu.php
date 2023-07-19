@@ -3,6 +3,8 @@ class Dowell_Login {
 
 public function __construct(){
     add_action('admin_menu', [$this, 'login_init_menu']);    
+    add_shortcode('dowell_login', [$this, 'render_login_page']);
+
 }
 
 public function login_init_menu() {
@@ -10,16 +12,16 @@ public function login_init_menu() {
 }
 
 
-public function render_login_page (){
+public function render_login_page() {
     echo '<div id="login-plugin"></div>';
-
+    echo '<script type="text/javascript">const element = React.createElement(DowellLoginComponent, {});ReactDOM.render(element, document.getElementById("login-plugin"));</script>';
 }
+
 
 }
 
 function dowell_Login_init() {
 $plugin = new Dowell_Login();
-add_shortcode('dowell_login', [$plugin, 'render_login_page']);
 }
 
 add_action('plugins_loaded', 'dowell_Login_init');
