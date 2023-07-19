@@ -16,7 +16,6 @@ const Login = () => {
 
   const handleExternalNavigation = (session_id) => {
     const homeRoute= `https://100093.pythonanywhere.com/home?session_id=${session_id}`
-    console.log(homeRoute)
     window.location.href = homeRoute;
   };
   
@@ -65,12 +64,8 @@ const Login = () => {
 
         } else if (response.data.session_id) {
           setCookies(response.data.session_id);
-          setIsloading(false);
           setErr(false);
           handleExternalNavigation(response.data.session_id);
-          setEmail('');
-          setPassword('');
-
         } else {
           setErrMSG(response.data.data);
           setErr(true);

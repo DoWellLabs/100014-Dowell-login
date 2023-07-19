@@ -3,9 +3,7 @@
     margin: 0;
     box-sizing: border-box;
 }
-:root{
-    font-family:  Geneva, Tahoma, sans-serif;
-}
+
 html {
     scroll-behavior: smooth;
 }
@@ -21,6 +19,7 @@ input {
 #login-plugin {
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 }
 
 .container {
