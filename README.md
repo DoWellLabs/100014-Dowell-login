@@ -24,7 +24,7 @@ Example commands:
   cd <desired folder to contain project>
   git clone https://github.com/DoWellLabs/100014-Dowell-login.git
   cd 100014-Dowell-login
-  git switch react_login_plugin-john
+  git switch react_login_plugi-john
 ```
 
 ### Install
@@ -36,26 +36,31 @@ npm install
 ```
 
 ### Usage
-Create environemnt variable and add your API KEY in the following format
+Create an environment variable and add your API KEY in the following format
 
 ```sh
 REACT_APP_API_KEY=YOUR_API_KEY_GOES_HERE
 ```
-To run the project outside wordpress, execute the following command in root folder:
+To run the project outside wordpress, execute the following command in the root folder:
 
 ```sh
 npm run dev 
 ```
-To run the project inside wordpress, execute the following command in root folder then activate the plugin :
+To run the project inside wordpress, execute the following command in the root folder then activate the plugin :
 
 
 ```sh
 npm run build 
 ```
-To run the project in watch mode inside wordpress, execute the following command in root folder:
+To run the project in watch mode inside wordpress, execute the following command in the root folder:
 
 ```sh
 npm start 
+```
+To render the plugin inside a wordpress page/block use shortcode:
+
+```sh
+[dowell_login]
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
