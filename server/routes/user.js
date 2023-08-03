@@ -89,4 +89,15 @@ router.get("/:username", (req, res) => {
   });
 });
 
+// Delete user
+router.delete("/:id", (req, res) => {
+  const q = "DELETE FROM `users` WHERE id=?";
+
+  db.query(q, [req.params.id], (err, user) => {
+    if (err) return res.status(500).json(err);
+
+    res.status(200).json("User deleted!");
+  });
+});
+
 export default router;

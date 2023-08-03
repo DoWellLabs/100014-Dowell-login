@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Add from "../../components/add/Add";
 import { useEffect, useState } from "react";
-import PublicUser from "../publicUser/PublicUser";
+import Users from "../../components/users/Users";
 
 const Settings = () => {
   const [isActive, setIsActive] = useState("view");
@@ -47,13 +47,13 @@ const Settings = () => {
   const displayComponent = () => {
     switch (isActive) {
       case "view":
-        return <PublicUser />;
+        return <Users />;
 
       case "add":
         return <Add />;
 
       default:
-        return <PublicUser />;
+        return <Users />;
     }
   };
 

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-// import Logo from "../../assets/dowell-logo.png";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -44,16 +43,20 @@ const Users = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!username && !session_id) {
-      navigate("/");
-    }
-  }, [username, session_id]);
+  // useEffect(() => {
+  //   if (!username && !session_id) {
+  //     navigate("/");
+  //   }
+  // }, [username, session_id]);
 
-  const handleLogout = () => {
-    Cookies.remove("session_id");
-    Cookies.remove("username");
-    navigate("/");
+  const deleteUser = async (id) => {
+    try {
+      const res = await axios.delete(`http://localhost:5000/users/${id}`);
+
+      setUsers(users.filter((user) => user.id !== id));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -62,14 +65,6 @@ const Users = () => {
         <ClipLoader />
       ) : (
         <div className="container">
-          {/* {!isAdminComponent && (
-            <div className="top">
-              <img src={Logo} alt="" />
-              <button className="logoutBtn" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
-          )} */}
           <div className="info">
             <h1>Product Links</h1>
             <p>
@@ -96,7 +91,7 @@ const Users = () => {
                     <td style={{ fontSize: "16px", fontWeight: "bold" }}>
                       {user.username}
                     </td>
-                    <td>
+                    <td className="linkGroup">
                       <a href={user.link}>
                         <button
                           disabled={!session_id && user?.id !== currentUser?.id}
@@ -104,6 +99,12 @@ const Users = () => {
                           {user.link}
                         </button>
                       </a>
+                      <button
+                        className="delete"
+                        onClick={() => deleteUser(user.id)}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}

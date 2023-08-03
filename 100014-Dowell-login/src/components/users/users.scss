@@ -92,6 +92,25 @@
               }
             }
 
+            .linkGroup {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              .delete {
+                background-color: crimson;
+                color: white;
+                cursor: pointer;
+                border: none;
+                padding: 5px;
+                transition: all 0.3s ease;
+
+                &:hover {
+                  transform: scale(1.03);
+                }
+              }
+            }
+
             &:nth-child(even) {
               background-color: #f2f2f2;
             }
