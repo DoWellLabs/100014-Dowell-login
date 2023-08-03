@@ -1,0 +1,46 @@
+{
+  "name": "dowell-login",
+  "version": "1.0.0",
+  "description": "Login API by Living Lab will allow you to log in a user to the living lab account",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --config webpack.config.js --mode development",
+    "build": "webpack --config webpack.config.js --mode production",
+    "dev": "react-scripts start"
+  },
+  "author": "uxlivinglab",
+  "license": "GPL-2.0",
+  "devDependencies": {
+    "@babel/preset-react": "^7.22.5",
+    "@wordpress/scripts": "^26.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "svg-url-loader": "^8.0.0",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "js-cookie": "^3.0.5",
+    "react-router-dom": "^6.14.1",
+    "react-scripts": "^5.0.1",
+    "react-spinners": "^0.13.8",
+    "sass": "^1.63.6",
+    "sass-loader": "^13.3.2",
+    "stringify-package": "^1.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
