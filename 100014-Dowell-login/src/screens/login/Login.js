@@ -15,24 +15,28 @@ const Login = () => {
   const [err, setErr] = useState(false);
   const [errMsg, setErrMSG] = useState("");
   const [loading, setIsloading] = useState(false);
+  const [url, setUrl] = useState(window.location.href);
 
+  const userInfo = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (Cookies.get("session_id")) {
-  //     navigate("/settings");
-  //   }
-  // }, [Cookies.get("session_id")]);
+  useEffect(() => {
+    setUrl(window.location.href);
+  }, [url]);
+
+  const redirectURL = url.split("=")[1];
+
+  useEffect(() => {
+    if (Cookies.get("session_id")) {
+      navigate("/settings");
+    }
+  }, [Cookies.get("session_id")]);
 
   useEffect(() => {
     if (Cookies.get("username")) {
       navigate("/public");
     }
   }, [Cookies.get("username")]);
-
-  // const setCookies = async (session_id) => {
-  //   Cookies.set("session_id", session_id);
-  // };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -71,7 +75,8 @@ const Login = () => {
         publicData
       );
 
-      if (res.data.isAdmin === 1) {
+      if (res.data.user.isAdmin === 1) {
+        localStorage.setItem("user", JSON.stringify(res.data));
         const response = await axios.post(
           "https://100014.pythonanywhere.com/api/loginapi/",
           data,
@@ -95,9 +100,14 @@ const Login = () => {
           setIsloading(false);
         }
       } else {
-        window.location.replace("/public");
-        Cookies.set("username", res.data.username);
-        console.log(res.data);
+        if (redirectURL) {
+          window.location.replace(redirectURL);
+        } else {
+          window.location.replace("/public");
+          Cookies.set("username", res.data.user.username);
+          console.log(res.data);
+          localStorage.setItem("user", JSON.stringify(res.data));
+        }
       }
     } catch (err) {
       console.log(err);
@@ -109,7 +119,7 @@ const Login = () => {
 
   return (
     <div className="container">
-      {!Cookies.get("username") && (
+      {!Cookies.get("username") && !Cookies.get("session_id") && (
         <form className="login">
           <div className="login-logo">
             <img

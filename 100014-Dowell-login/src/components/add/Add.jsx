@@ -22,6 +22,15 @@ const Add = () => {
 
   const session_id = Cookies.get("session_id");
 
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+  const token = userInfo?.token;
+
+  const config = {
+    header: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   useEffect(() => {
     const fetchUser = async () => {
       const loggedinUser = await getUserInfoFromLogin(session_id);
@@ -42,15 +51,14 @@ const Add = () => {
       username,
       password,
       organization: currentOrg.org_name,
-      portfolio: currentOrg.portfolio_name,
-      product: currentOrg.product,
-      link: `https://ll04-finance-dowell.github.io/workflowai.online/?username=${username}`,
+      portfolio,
+      product,
       isAdmin,
     };
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/users", data);
+      const res = await axios.post("http://localhost:5000/users", data, config);
       setSuccessMsg(res.data);
 
       setLoading(false);
@@ -118,21 +126,19 @@ const Add = () => {
         </div>
         <div className="inputContainer">
           <label>Portfolio</label>
-          <input
-            type="text"
-            placeholder="Portfolio"
-            value={currentOrg?.portfolio_name}
-            onChange={(e) => setPortfolio(e.target.value)}
-          />
+          <select onChange={(e) => setPortfolio(e.target.value)} required>
+            <option value="">Select Portfolio</option>
+            <option value={currentOrg?.portfolio_name}>
+              {currentOrg?.portfolio_name}
+            </option>
+          </select>
         </div>
         <div className="inputContainer">
           <label>Product</label>
-          <input
-            type="text"
-            placeholder="Product"
-            value={currentOrg?.product}
-            onChange={(e) => setProduct(e.target.value)}
-          />
+          <select onChange={(e) => setProduct(e.target.value)} required>
+            <option value="">Select Product</option>
+            <option value={currentOrg?.product}>{currentOrg?.product}</option>
+          </select>
         </div>
         <div className="adminCheck">
           <label>Is Admin</label>

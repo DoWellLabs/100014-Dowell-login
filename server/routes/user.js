@@ -1,6 +1,8 @@
 import express from "express";
 import { db } from "../config/db.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { getToken } from "../utils/getToken.js";
 
 const router = express.Router();
 
@@ -20,6 +22,12 @@ router.post("/", (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
+    // const token = jwt.sign(
+    //   { username: req.body.username, password: req.body.password },
+    //   process.env.JWT
+    // );
+    const link =
+      "http://localhost:3000?redirect_url=https://ll04-finance-dowell.github.io/workflowai.online";
     const q =
       "INSERT INTO users(`username`,`password`,`organization`,`portfolio`,`product`,`link`,`isAdmin`) VALUES (?)";
 
@@ -29,7 +37,7 @@ router.post("/", (req, res) => {
       req.body.organization,
       req.body.portfolio,
       req.body.product,
-      req.body.link,
+      link,
       req.body.isAdmin,
     ];
 
@@ -59,44 +67,90 @@ router.post("/login", (req, res) => {
 
     const { password, ...others } = user[0];
 
-    res.status(200).json(others);
+    const token = jwt.sign({ id: others.id }, process.env.JWT);
+
+    res.status(200).json({ user: others, token });
   });
 });
 
 // Get public users
 router.get("/", (req, res) => {
-  const q = "SELECT * FROM `users`";
+  const token = getToken(req, res);
 
-  db.query(q, (err, users) => {
+  if (!token) {
+    return res.status(500).json("Not authenticated. Authorization denied!");
+  }
+
+  jwt.verify(token, process.env.JWT, (err, userInfo) => {
     if (err) return res.status(500).json(err);
 
-    if (users.length > 0) {
-      return res.status(200).json(users);
+    if (userInfo) {
+      const q = "SELECT * FROM `users`";
+
+      db.query(q, (err, users) => {
+        if (err) return res.status(500).json(err);
+
+        if (users.length > 0) {
+          return res.status(200).json(users);
+        }
+      });
     }
   });
 });
 
 // Get loggedin user
 router.get("/:username", (req, res) => {
-  const q = "SELECT * FROM `users` WHERE username=?";
+  const token = getToken(req, res);
 
-  db.query(q, [req.params.username], (err, user) => {
+  if (!token) {
+    return res.status(500).json("Not authenticated. Authorization denied!");
+  }
+
+  jwt.verify(token, process.env.JWT, (err, userInfo) => {
     if (err) return res.status(500).json(err);
 
-    if (user.length > 0) {
-      return res.status(200).json(user[0]);
+    if (userInfo) {
+      const q = "SELECT * FROM `users` WHERE username=?";
+
+      db.query(q, [req.params.username], (err, user) => {
+        if (err) return res.status(500).json(err);
+
+        if (user.length > 0) {
+          return res.status(200).json(user[0]);
+        }
+      });
     }
   });
 });
 
 // Delete user
 router.delete("/:id", (req, res) => {
-  const q = "DELETE FROM `users` WHERE id=?";
+  const token = getToken(req, res);
 
-  db.query(q, [req.params.id], (err, user) => {
+  if (!token) {
+    return res.status(500).json("Not authenticated. Authorization denied!");
+  }
+
+  jwt.verify(token, process.env.JWT, (err, userInfo) => {
     if (err) return res.status(500).json(err);
 
-    res.status(200).json("User deleted!");
+    if (userInfo) {
+      const userQuery = "SELECT * FROM `users` WHERE id=?";
+
+      db.query(userQuery, [userInfo.id], (err, data) => {
+        if (err) return res.status(500).json(err);
+
+        if (data[0].isAdmin) {
+          const q = "DELETE FROM `users` WHERE id=?";
+
+          db.query(q, [req.params.id], (err, user) => {
+            if (err) return res.status(500).json(err);
+
+            res.status(200).json("User deleted!");
+          });
+        }
+      });
+    }
   });
 });
 

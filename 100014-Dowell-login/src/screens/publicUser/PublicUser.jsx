@@ -14,11 +14,20 @@ const PublicUser = ({ isAdminComponent }) => {
   const username = Cookies.get("username");
   const session_id = Cookies.get("session_id");
 
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+  const token = userInfo?.token;
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   useEffect(() => {
     const fetchUsers = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:5000/users");
+        const res = await axios.get("http://localhost:5000/users", config);
 
         setUsers(res.data);
         setLoading(false);
@@ -33,7 +42,10 @@ const PublicUser = ({ isAdminComponent }) => {
   useEffect(() => {
     const fetchPublicUser = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/users/${username}`);
+        const res = await axios.get(
+          `http://localhost:5000/users/${username}`,
+          config
+        );
         setCurrentUser(res.data);
       } catch (error) {
         console.log(error);
@@ -45,7 +57,7 @@ const PublicUser = ({ isAdminComponent }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!username && !session_id) {
+    if ((!username && !session_id) || !token) {
       navigate("/");
     }
   }, [username, session_id]);
@@ -53,6 +65,7 @@ const PublicUser = ({ isAdminComponent }) => {
   const handleLogout = () => {
     Cookies.remove("session_id");
     Cookies.remove("username");
+    localStorage.removeItem("user");
     navigate("/");
   };
 
@@ -97,7 +110,7 @@ const PublicUser = ({ isAdminComponent }) => {
                       {user.username}
                     </td>
                     <td>
-                      <a href={user.link}>
+                      <a href={user.link.split("=")[1]}>
                         <button
                           disabled={!session_id && user?.id !== currentUser?.id}
                         >

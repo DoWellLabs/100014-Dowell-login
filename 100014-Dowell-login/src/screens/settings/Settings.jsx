@@ -35,6 +35,7 @@ const Settings = () => {
   const handlNavigate = () => {
     Cookies.remove("session_id");
     Cookies.remove("username");
+    localStorage.removeItem("user");
     navigate("/");
   };
 

@@ -9,13 +9,15 @@
     flex-direction: column;
     gap: 20px;
     padding: 0px 20px;
-    margin-top: -20px;
+    margin-top: 20px;
+    width: 80%;
 
     .top {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-top: -250px;
 
       .logoutBtn {
         cursor: pointer;

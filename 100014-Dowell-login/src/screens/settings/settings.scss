@@ -6,6 +6,7 @@
   flex-direction: column;
   height: 100vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   width: 100%;
 
   .top {
@@ -65,7 +66,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 16px;
+    margin-bottom: 30px;
 
     button {
       display: flex;

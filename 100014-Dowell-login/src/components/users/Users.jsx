@@ -13,11 +13,20 @@ const Users = () => {
   const username = Cookies.get("username");
   const session_id = Cookies.get("session_id");
 
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+  const token = userInfo?.token;
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   useEffect(() => {
     const fetchUsers = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:5000/users");
+        const res = await axios.get("http://localhost:5000/users", config);
 
         setUsers(res.data);
         setLoading(false);
@@ -32,7 +41,10 @@ const Users = () => {
   useEffect(() => {
     const fetchPublicUser = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/users/${username}`);
+        const res = await axios.get(
+          `http://localhost:5000/users/${username}`,
+          config
+        );
         setCurrentUser(res.data);
       } catch (error) {
         console.log(error);
@@ -51,7 +63,10 @@ const Users = () => {
 
   const deleteUser = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/users/${id}`);
+      const res = await axios.delete(
+        `http://localhost:5000/users/${id}`,
+        config
+      );
 
       setUsers(users.filter((user) => user.id !== id));
     } catch (err) {
