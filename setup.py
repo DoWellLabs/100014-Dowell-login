@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='login-api-library',
-    version='0.1',
+    name='login-api-client',
+    version='1.0',
     packages=find_packages(),
     install_requires=['requests'],
-    author='Your Name',
-    author_email='your@email.com',
-    description='A Python library for interacting with the login API.',
-    url='https://github.com/yourusername/login-api-library',
+    author='Achin Sharma',
+    author_email='achinsharma160@gmail.com',
+    description='Python client for interacting with the login API.',
+    url='https://github.com/yourusername/login-api-client',
 )
