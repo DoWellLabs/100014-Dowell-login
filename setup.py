@@ -8,5 +8,5 @@ setup(
     author='Achin Sharma',
     author_email='achinsharma160@gmail.com',
     description='Python client for interacting with the login API.',
-    url='https://github.com/yourusername/login-api-client',
+    url='https://github.com/DoWellLabs/100014-Dowell-login/tree/achin-dowell-loginapi',
 )
