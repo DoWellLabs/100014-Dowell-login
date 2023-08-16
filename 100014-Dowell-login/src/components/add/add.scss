@@ -1,0 +1,131 @@
+@import "../../global.scss";
+
+.add {
+  width: 65%;
+  height: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 1px -1px 9px 2px rgba(3, 69, 18, 0.75);
+  -webkit-box-shadow: 1px -1px 9px 2px rgba(3, 69, 18, 0.75);
+  -moz-box-shadow: 1px -1px 9px 2px rgba(3, 69, 18, 0.75);
+
+  @include mobile {
+    width: 98%;
+  }
+
+  .error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: crimson;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  h3 {
+    background-color: rgba(0, 128, 0, 0.838);
+    color: white;
+    text-align: center;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    width: 100%;
+
+    .inputContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 100%;
+
+      label {
+        font-size: 20px;
+        font-weight: bold;
+        color: gray;
+      }
+
+      input {
+        padding: 20px 10px;
+        font-size: 17px;
+        height: 30px;
+      }
+
+      select {
+        padding: 10px;
+        font-size: 17px;
+      }
+
+      .passworContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid gray;
+        width: 100%;
+
+        input {
+          flex: 9;
+          border: none;
+        }
+
+        img {
+          height: 20px;
+          flex: 2;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .adminCheck {
+      width: 100%;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    button {
+      width: 100%;
+      padding: 20px 10px;
+      font-size: 17px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background-color: #666666;
+      color: white;
+      font-weight: bold;
+      transition: all 0.4s ease;
+      cursor: pointer;
+
+      &:hover {
+        background-color: green;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.4;
+      }
+    }
+  }
+}
