@@ -26,6 +26,7 @@ const Users = () => {
     const fetchUsers = async () => {
       setLoading(true);
       try {
+<<<<<<< HEAD
         const res = await axios.get(
           "http://localhost:5000/users",
           // "https://testapp-beta-eight.vercel.app/users",
@@ -33,6 +34,9 @@ const Users = () => {
         );
 
         console.log(res.data);
+=======
+        const res = await axios.get("http://localhost:5000/users", config);
+>>>>>>> ae2d96a8177e080236f911c890c036511d51e2b9
 
         setUsers(res.data);
         setLoading(false);
@@ -49,7 +53,10 @@ const Users = () => {
       try {
         const res = await axios.get(
           `http://localhost:5000/users/${username}`,
+<<<<<<< HEAD
           // `https://testapp-beta-eight.vercel.app/users/${username}`,
+=======
+>>>>>>> ae2d96a8177e080236f911c890c036511d51e2b9
           config
         );
         setCurrentUser(res.data);
@@ -72,7 +79,10 @@ const Users = () => {
     try {
       const res = await axios.delete(
         `http://localhost:5000/users/${id}`,
+<<<<<<< HEAD
         // `https://testapp-beta-eight.vercel.app/users/${id}`,
+=======
+>>>>>>> ae2d96a8177e080236f911c890c036511d51e2b9
         config
       );
 

@@ -11,19 +11,27 @@ const PublicUser = ({ isAdminComponent }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
+<<<<<<< HEAD
   console.log(currentUser);
 
+=======
+>>>>>>> ae2d96a8177e080236f911c890c036511d51e2b9
   const username = Cookies.get("username");
   const session_id = Cookies.get("session_id");
 
   const userInfo = JSON.parse(localStorage.getItem("user"));
   const token = userInfo?.token;
 
+<<<<<<< HEAD
   // console.log(token);
 
   const config = {
     headers: {
       "Content-Type": "application/json",
+=======
+  const config = {
+    headers: {
+>>>>>>> ae2d96a8177e080236f911c890c036511d51e2b9
       Authorization: `Bearer ${token}`,
     },
   };
@@ -32,11 +40,15 @@ const PublicUser = ({ isAdminComponent }) => {
     const fetchUsers = async () => {
       setLoading(true);
       try {
+<<<<<<< HEAD
         const res = await axios.get(
           `http://localhost:5000/users/org/${currentUser?.uxLivingLabAdminId}`,
           // "https://testapp-beta-eight.vercel.app/users",
           config
         );
+=======
+        const res = await axios.get("http://localhost:5000/users", config);
+>>>>>>> ae2d96a8177e080236f911c890c036511d51e2b9
 
         setUsers(res.data);
         setLoading(false);
@@ -46,14 +58,21 @@ const PublicUser = ({ isAdminComponent }) => {
       }
     };
     fetchUsers();
+<<<<<<< HEAD
   }, [currentUser?.uxLivingLabAdminId]);
+=======
+  }, []);
+>>>>>>> ae2d96a8177e080236f911c890c036511d51e2b9
 
   useEffect(() => {
     const fetchPublicUser = async () => {
       try {
         const res = await axios.get(
           `http://localhost:5000/users/${username}`,
+<<<<<<< HEAD
           // `https://testapp-beta-eight.vercel.app/users/${username}`,
+=======
+>>>>>>> ae2d96a8177e080236f911c890c036511d51e2b9
           config
         );
         setCurrentUser(res.data);

@@ -72,7 +72,10 @@ const Login = () => {
     try {
       const res = await axios.post(
         "http://localhost:5000/users/login",
+<<<<<<< HEAD
         // "https://testapp-beta-eight.vercel.app/users/login",
+=======
+>>>>>>> ae2d96a8177e080236f911c890c036511d51e2b9
         publicData
       );
 
